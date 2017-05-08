@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10 National Park FAQs </title>
+    <style>
+        .invisible {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="newsletter">
+    <h1>Would you like to sign up for our newsletter?</h1>
+    <span id="agree">X</span>
+</div>
+<br>
+<br>
+<button class="button">FAQs</button>
+
+<h1>10 National Park FAQs</h1>
+<dl>
+    <dt>What facilities or services does Park offer?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, commodi consequatur
+        consequuntur deserunt dolor doloribus ea fuga, in iure odio officia quam quis quisquam quod repellendus sequi,
+        sint tempora ut?
+    </dd>
+    <dt>When is the visitor center open?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolore error, eum
+        nesciunt quis unde.
+    </dd>
+    <dt>Do you accept checks?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ea fugiat hic impedit magni
+        nihil porro quaerat reiciendis repudiandae vitae?
+    </dd>
+    <dt>Do you accept credit cards or debit cards?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, cum delectus fugit incidunt
+        molestias nemo officia placeat voluptatibus!
+    </dd>
+    <dt>Can I get information mailed to me?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta laboriosam quae repellat rerum
+        sequi sunt voluptate voluptatem.
+    </dd>
+    <dt>Where can I get extra brochures?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, aliquam, animi asperiores
+        doloremque ipsam iure maiores neque placeat, quam rerum voluptate.
+    </dd>
+    <dt>Where can I buy an item I saw in your visitor center?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius harum id minus!</dd>
+    <dt>Does the park close at night?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi iste neque sunt unde!</dd>
+    <dt>Can I get an entrance fee waiver?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam culpa ex numquam similique
+        ullam.
+    </dd>
+    <dt>Will my cell phone work in the Park?</dt>
+    <dd class="invisible">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut excepturi laudantium mollitia
+        nulla numquam quas quos rerum ullam.
+    </dd>
+z</dl>
+
+<button id="highlightBtn">Facts</button>
+
+<h3>San Antonio Missions</h3>
+<ul>Facts
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam blanditiis nemo?</li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, incidunt!</li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum quae quam quidem suscipit ullam.</li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, minus molestias possimus quae quidem
+        repellendus tempora!
+    </li>
+</ul>
+
+<h3>Big Bend National Park</h3>
+<ul>Facts
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa earum eveniet tenetur.</li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet mollitia quibusdam sit ut voluptatem.
+    </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, eligendi nobis!</li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias at eos ipsa, ipsam magni, mollitia numquam,
+        officiis pariatur quaerat qui sunt tenetur. Adipisci aliquid doloremque nihil numquam officia, possimus
+        quisquam!
+    </li>
+</ul>
+
+<h3>Big Thicket National Preserve</h3>
+<ul>Facts
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In natus nemo omnis! Labore, voluptas.
+    </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus eius quisquam reprehenderit vero.
+    </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea enim esse harum! Amet consequuntur, dolores error eveniet hic natus repellendus!
+    </li>
+    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At corporis cum deleniti facere illum molestiae nihil, saepe tenetur.
+    </li>
+</ul>
+
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+
+<script>
+    "use strict";
+    $(document).ready(function () {
+        $('.button').click(function () {
+            $("dd").toggleClass("invisible");
+        });
+        $('dt').click(function () {
+            $(this).css('background-color', 'yellow');
+        });
+        //============================================ For Traversal Lesson//
+        var highlightBtn = $('#highlightBtn');
+        highlightBtn.click(function () {
+            $('ul').each(function () {
+                $(this).children().last().css('background-color', 'yellow');
+            });
+        });
+        //===========Make h3 font bold on click======//
+        $('h3').click(function () {
+            $(this).next().css('font-weight', 'bold');
+        });
+        //======Make first li of the parent ul should have a font color of blue====//
+        $('li').click(function () {
+            $(this).parent().children().first().css('color', 'blue');
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

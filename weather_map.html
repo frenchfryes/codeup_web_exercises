@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <link rel="stylesheet" href="css/weather_map.css">
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<h2 id="city"></h2>
+<section class="Container" id="weather">
+</section>
+<div class="Container">
+    <form>
+        <label hidden for="latitude">Latitude:</label>
+        <input hidden type="number" id="latitude" name="latitude">
+        <label hidden for="longitude">Longitude:</label>
+        <input hidden type="number" id="longitude" name="longitude">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location">
+        <label for="days">Days</label>
+        <select id="days" name="days">
+            <option selected>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>10</option>
+        </select>
+        <button id="button" type="button">Update Forecast</button>
+    </form>
+</div>
+<div class="Container">
+    <div id="map"></div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOESUjGhKSdGmXcZPtsGs-V8jG_Xj1WP0"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+    var latitude = 29.426791;
+    var longitude = -98.489602;
+    var days = 3;
+    (function () {
+        "use strict";
+        var mapOptions = {
+            zoom: 5,
+            center: {
+                lat: 29.426791,
+                lng: -98.489602
+            }
+        };
+        var coordinates = {lat: latitude, lng: longitude};
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: coordinates,
+            map: map,
+            draggable: true
+        });
+
+        function drag() {
+            latitude = marker.getPosition().lat();
+            longitude = marker.getPosition().lng();
+            days = Number($('#days').val());
+            coordinates = {lat: latitude, lng: longitude};
+            map.setCenter(coordinates);
+            callAjax();
+        }
+
+        function updateForecast() {
+            marker.setMap(null);
+            latitude = Number($('#latitude').val());
+            longitude = Number($('#longitude').val());
+            days = Number($('#days').val());
+            coordinates = {lat: latitude, lng: longitude};
+            map.setCenter(coordinates);
+            marker = new google.maps.Marker({
+                position: coordinates,
+                map: map,
+                draggable: true
+            });
+            marker.addListener('dragend', drag);
+            callAjax();
+        }
+
+        $('#button').click(function () {
+            updateForecast();
+        });
+        marker.addListener('dragend', drag);
+    })();
+
+    function callAjax() {
+        $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/forecast/daily",
+            data: {
+                APPID: "9453fdfb20407f274f2d8b6662464d75",
+                units: "imperial",
+                lat: latitude,
+                lon: longitude,
+                cnt: days
+            }
+        }).done(findWeather);
+    };
+    callAjax();
+
+    function findWeather(data) {
+        var weatherHtml = "";
+        var cityHtml = data.city.name + ", " + data.city.country;
+        console.log(data);
+        for (i = 0; i < data.list.length; i++) {
+            var weather = data.list[i];
+            var date = new Date(weather.dt * 1000);
+            weatherHtml += "<div><h3>" + date + "</h3>";
+            weatherHtml += "<h4>High " + Math.round(weather.temp.max) + "/" + Math.round(weather.temp.min) + " Low" + "</h4>";
+            weatherHtml += "<img src='http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png'>";
+            weatherHtml += "<h4>" + weather.weather[0].description + "</h4>";
+            weatherHtml += "<h4>Humidity: " + weather.humidity + "</h4>";
+            weatherHtml += "<h4>Wind: " + weather.speed + "</h4>";
+            weatherHtml += "<h4>Pressure: " + weather.pressure + "</h4></div>";
+        }
+        ;
+        $('#weather').html(weatherHtml);
+        $('#city').html(cityHtml);
+    };
+
+  /*  function initService() {
+        var displaySuggestions = function(predictions, status) {
+            if (status != google.maps.places.PlacesServiceStatus.OK) {
+                alert(status);
+                return;
+            }
+
+            predictions.forEach(function(prediction) {
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode(prediction.description));
+                document.getElementById('results').appendChild(li);
+            });
+        };
+
+        var service = new google.maps.places.AutocompleteService();
+        service.getQueryPredictions({ input: 'pizza near Syd' }, displaySuggestions);
+    }*/
+</script>
+</body>
+</html>
+-->>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>jquery</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav>
+    <ul id="myMenu">
+        <li class="codeup">Home</li>
+        <li class="codeup">About</li>
+        <li class="codeup">Contact</li>
+    </ul>
+</nav>
+<div class="container">
+    <h1 id="myHeader">What up Ya'll</h1>
+    <p class="myParagraph">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, debitis, rem. Accusantium animi beatae cumque
+        cupiditate, dignissimos doloremque eaque nesciunt quas repellendus temporibus! Ab at dignissimos doloremque eius
+        inventore quas!
+    </p>
+
+    <ul id="myList">
+        <li>fifty</li>
+        <li>forty nine</li>
+        <li>forty eight</li>
+        <li>forty seven</li>
+    </ul>
+</div>
+<div class="secondcontainer">
+    <h1 id="secondHeader">What up Ya'll</h1>
+    <p class="secondParagraph">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, debitis, rem. Accusantium animi beatae cumque
+        cupiditate, dignissimos doloremque eaque nesciunt quas repellendus temporibus! Ab at dignissimos doloremque eius
+        inventore quas!
+    </p>
+
+    <ul id="secondList">
+        <li>sixty</li>
+        <li>fifty nine</li>
+        <li>fifty eight</li>
+        <li>fifty seven</li>
+    </ul>
+</div>
+<div>
+    <input type="button" class="btn" id="newPage"/>
+</div>
+<script>
+    $(document).ready(function(){
+        // All the magic happens in here
+        $('#myHeader').click(function() {
+            $(this).css('background-color', 'red');
+        });
+    });
+
+
+    $('li').hover(
+        function() {
+            $(this).css('background-color', 'red');
+        },
+        function() {
+            $(this).css('background-color', '#FFF');
+        }
+    );
+
+    $('p').dblclick(function(e) {
+        $(this).css('font-size', '18px');
+    });
+
+    $('button').click(function() {
+        $(this).button('newPage'));
+        }
+    )
+</script>
+
+</body>
+</html>

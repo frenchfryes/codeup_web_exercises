@@ -1,0 +1,38 @@
+section div {
+    width: 20%;
+    background-color: rgba(120, 120, 120, .2);
+    text-align: center;
+    color: white;
+    float: left;
+    margin-bottom: 2em;
+    margin-right: 2em;
+}
+#map {
+    height: 500px;
+    width: 812px;
+    text-align: center;
+    display: inline-block;
+}
+body {
+    background-image: url(../img/weather.jpg);
+}
+#city {
+    color: white;
+    text-align: center;
+}
+.Container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
+
+label {
+    color: white;
+}
+
+#button {
+background-color: deepskyblue;
+    color: white;
+}
